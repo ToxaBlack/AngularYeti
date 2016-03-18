@@ -1,0 +1,70 @@
+<div ng-controller="BookController as bookCtrl">
+  <div class="row" >
+    <div class="large-8 columns">
+      <form name="book">
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Title
+              <input type="text" placeholder="Enter title" ng-model="bookCtrl.book.title"/>
+            </label>
+          </div>
+          <div class="large-6 columns">
+            <label>Authors
+              <input type="text" placeholder="Enter authors" ng-model="bookCtrl.book.author"/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Description
+              <textarea placeholder="Enter description" ng-model="bookCtrl.book.description"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Date
+              <input type="date" placeholder="Enter authors" ng-model="bookCtrl.book.date"/>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Select Box
+              <select>
+                <option value="husker">Husker</option>
+                <option value="starbuck">Starbuck</option>
+                <option value="hotdog">Hot Dog</option>
+                <option value="apollo">Apollo</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <h4>Default</h4>
+          <rating value="rate" max="max" readonly="isReadonly" on-hover="bookCtrl.hoveringOver(value)"
+                  on-leave="overStar = null"></rating>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <label>Choose type</label>
+            <input type="radio" name="type" value="PDF" id="typePDF" ng-model="bookCtrl.book.type"><label for="typePDF">PDF</label>
+            <input type="radio" name="type" value="EPUB" id="typeEPAB" ng-model="bookCtrl.book.type"><label
+            for="typeEPAB">EPUB</label>
+            <input type="radio" name="type" value="Paper" id="typePaper" ng-model="bookCtrl.book.type"><label
+            for="typePaper">EPUB</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="large-4 columns">
+      <a class="th" href="#/book/{{book.id}}"><img ng-src="{{bookCtrl.book.src}}"></a>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="columns large-2 large-offset-10">
+      <a class="button radius" href="#" ng-click="bookCtrl.update()">Update</a>
+    </div>
+  </div>
+</div>
