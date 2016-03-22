@@ -1,13 +1,13 @@
-(function() {
-  'use strict';
+(function () {
+	'use strict';
 
-  angular
-    .module('gulpAngular')
-    .run(initFoundation);
+	angular
+			.module('gulpAngular')
+			.run(initFoundation);
 
-  /** @ngInject */
-  function initFoundation() {
-    angular.element(document).foundation();
-  }
+	/** @ngInject */
+	function initFoundation() {
+		angular.element(document).foundation();
+	}
 
 })();
