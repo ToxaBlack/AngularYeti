@@ -6,10 +6,19 @@
 			.controller('BookController', BookController);
 
 	/** @ngInject */
-	function BookController($stateParams, $state, $http, BookService) {
+	function BookController($stateParams, $state, $log, BookService, errorHandler) {
 		var vm = this;
-		// vm.book = BookService.get({id: $stateParams.id});
-		vm.book = $http.get("http://localhost:8080/api/books/56efe8b78928bd36a3a7b47f");
+		vm.book = {};
+		vm.date = new Date();
+
+		BookService().get({id: $stateParams.id}).$promise.then(function (response) {
+			$log.log('GET /rest/secure returned: ', response);
+			vm.book = response;
+			vm.date = new Date(response.date);
+
+		}).catch(function (response) {
+			errorHandler.handle(response);
+		});
 		vm.update = function () {
 			$state.go('bookGrid');
 		};

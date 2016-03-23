@@ -1,5 +1,5 @@
-<div class="row yeti-nav">
-    <nav class="top-bar large-12 columns">
+<div class="yeti-nav" ng-controller="NavbarController as vm">
+    <nav class="top-bar">
         <ul class="title-area">
             <li class="name">
                 <h1><a href="#">Yeti Library</a></h1>
@@ -9,10 +9,9 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li><a href="#">About</a></li>
-                <li ><a href="" >Logout</a></li>
+                <li><a ng-hide="vm.data.isAuth" href="#/login">Login</a></li>
+                <li ><a ng-show="vm.data.isAuth" href="" ng-click="vm.logout()" >Logout</a></li>
             </ul>
-
         </section>
     </nav>
 </div>

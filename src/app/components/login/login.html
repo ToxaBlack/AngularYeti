@@ -1,55 +1,30 @@
-<div ng-controller="LoginController as loginCtrl">
+
+<div ng-controller="LoginController as vm">
     <div class="row">
-        <div class="large-12 columns">
+        <div class="middle-12 columns" ng-submit="vm.login()">
             <form name="book">
                 <div class="row">
-                    <div class="large-6 center columns">
+                    <div class="small-12 large-4 small-centered columns">
                         <label>Username
-                            <input ng-model="credentials.username" placeholder="username">
+                            <input ng-model="vm.credentials.username" placeholder="username">
                         </label>
-                    </div>
-                    <div class="large-6 columns">
-                        <label>Password
-                            <input ng-model="credentials.password" placeholder="password">
-                        </label>
-                    </div>
-                    <div class="alert alert-danger" role="alert" ng-show="loginCtrl.error.data.message">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span class="sr-only">Error:</span>
-                        {{error.data.message}}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="small-12 large-4 small-centered columns">
+                        <label>Password
+                            <input ng-model="vm.credentials.password" placeholder="password">
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 large-4 small-centered columns">
+                        <button>Login!</button>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="columns large-2 large-offset-10">
-            <button ng-click="login()">Login!</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="columns large-2 large-offset-10">
-            <button ng-click="logout()">Logout...</button>
-        </div>
-    </div>
-    <div class="raw">
-        <div class="large-12 columns">
 
-            <h3>Calling open (non-secured) services</h3>
-            <button ng-click="getOpenGreetings()">Get greetings</button>
-            >>> {{greetings.open.getResult}}<br/>
-            <input ng-model="greetings.open.postValue"/>
-            <button ng-click="postOpenGreetings()">Post greetings</button>
-            <br/>
-
-            <hr/>
-
-            <h3>Calling secure services</h3>
-            <button ng-click="getSecureGreetings()">Get secure greetings</button>
-            >>> {{greetings.secure.getResult}}<br/>
-            <input ng-model="greetings.secure.postValue"/>
-            <button ng-click="postSecureGreetings()">Post secure greetings</button>
-            <br/>
-        </div>
-    </div>
 </div>

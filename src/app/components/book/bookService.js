@@ -3,12 +3,25 @@
 
 	angular
 			.module('gulpAngular')
-			.service('BookService', BookService)
-			.factory('UserService', BookService);
+			.factory('BookService', BookService);
 
 	/** @ngInject */
 	function BookService($resource) {
-		return $resource('http://localhost:8080/api/books/:id', {id: "@id"});
+
+		var secureResources = function (headers) {
+			if (headers) {
+				return $resource('http://localhost:8080/rest/books/:id', {id: "@id"}, {
+					post: {method: 'POST', headers: headers, isArray: false}
+				});
+			} else {
+				return $resource('http://localhost:8080/rest/books/:id', {id: "@id"}, {
+					get: {method: 'GET', cache: false, isArray: false},
+					options: {method: 'OPTIONS', cache: false}
+				});
+			}
+		};
+		
+		return secureResources;
 	}
 
 })();

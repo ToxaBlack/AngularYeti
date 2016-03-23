@@ -6,22 +6,12 @@
 			.controller('LoginController', LoginController);
 
 	/** @ngInject */
-	function LoginController($cookies, $http, $location, $q, $resource, $scope, Cookies, Csrf, Login) {
+	function LoginController($cookies, $http, $state,  $resource, Csrf, LoginService, $log, errorHandler, DataService) {
+		var vm = this;
 
-		$scope.greetings = {
-			open: {
-				getResult: '',
-				postValue: 'some value'
-			},
-			secure: {
-				getResult: '',
-				postValue: 'some secure value'
-			}
-		};
-
-		$scope.credentials = {
-			username: '',
-			password: ''
+		vm.credentials = {
+			username: null,
+			password: null
 		};
 
 		var openResources = $resource('http://localhost:8080/rest/open', {}, {
@@ -29,50 +19,52 @@
 			post: {method: 'POST', isArray: false}
 		});
 
-		$scope.getOpenGreetings = function () {
-			$scope.greetings.open.getResult = '';
+		vm.getOpenGreetings = function () {
+			vm.greetings.open.getResult = '';
 
 			openResources.get().$promise.then(function (response) {
-				console.log('GET /rest/open returned: ', response);
-				$scope.greetings.open.getResult = response.greetings;
+				$log.log('GET /rest/open returned: ', response);
+				vm.greetings.open.getResult = response.greetings;
 			});
 		};
 
-		$scope.postOpenGreetings = function () {
-			openResources.post({greetings: $scope.greetings.open.postValue}).$promise.then(function (response) {
-				console.log('POST /rest/open returned: ', response);
-				console.info('You might want to check the server logs to see that the POST has been handled!');
+		vm.postOpenGreetings = function () {
+			openResources.post({greetings: vm.greetings.open.postValue}).$promise.then(function (response) {
+				$log.log('POST /rest/open returned: ', response);
+				$log.info('You might want to check the server logs to see that the POST has been handled!');
 			});
 		};
 
-		$scope.login = function () {
-			Login.login($scope.credentials.username, $scope.credentials.password, function (data, status, headers, config) {
-				// Success handler
-				console.info('The user has been successfully logged in! ', data, status, headers, config);
-
-			}, function (data, status, headers, config) {
-				// Failure handler
-				console.error('Something went wrong while trying to login... ', data, status, headers, config);
-			});
+		vm.login = function () {
+			LoginService.login(vm.credentials.username, vm.credentials.password,
+					function (data, status, headers, config) {
+						DataService.setIsAuth(true);
+						$state.go("bookGrid");
+						$log.info('The user has been successfully logged in! ', data, status, headers, config);
+						
+					}, function (data, status, headers, config) {
+						$log.error('Something went wrong while trying to login... ', data, status, headers, config);
+						DataService.setIsAuth(false);
+					});
 		};
 
-		$scope.logout = function () {
-			Login.logout(function (data, status, headers, config) {
-				// Success handler
-				$scope.credentials = {username: '', password: ''};
+		vm.logout = function () {
+			LoginService.logout(function (data, status, headers, config) {
+				vm.credentials = {username: '', password: ''};
 				delete $cookies['JSESSIONID'];
-				console.info('The user has been logged out!');
-
-				$location.url('/');
+				$log.info('The user has been logged out!');
+				DataService.setIsAuth(false);
+				$state.go('/');
 
 			}, function (data, status, headers, config) {
-				// Failure handler
-				console.error('Something went wrong while trying to logout... ', data, status, headers, config);
+
+				$log.error('Something went wrong while trying to logout... ', data, status, headers, config);
+				DataService.setIsAuth(false);
 			});
 		};
 
 		var secureResources = function (headers) {
-			if (headers !== undefined) {
+			if (headers) {
 				return $resource('http://localhost:8080/rest/secure', {}, {
 					post: {method: 'POST', headers: headers, isArray: false}
 				});
@@ -84,39 +76,31 @@
 			}
 		};
 
-		$scope.getSecureGreetings = function () {
-			$scope.greetings.secure.getResult = '';
+		vm.getSecureGreetings = function () {
+			vm.greetings.secure.getResult = '';
 
 			secureResources().get().$promise.then(function (response) {
-				console.log('GET /rest/secure returned: ', response);
-				$scope.greetings.secure.getResult = response.greetings;
+				$log.log('GET /rest/secure returned: ', response);
+				vm.greetings.secure.getResult = response.greetings;
 
 			}).catch(function (response) {
-				handleError(response);
+				errorHandler.handle(response);
 			});
 		};
 
-		$scope.postSecureGreetings = function () {
+		vm.postSecureGreetings = function () {
 			Csrf.addResourcesCsrfToHeaders(secureResources().options, $http.defaults.headers.post).then(function (headers) {
-				secureResources(headers).post({greetings: $scope.greetings.secure.postValue}).$promise.then(function (response) {
-					console.log('POST /rest/secure returned: ', response);
-					console.info('You might want to check the server logs to see that the POST has been handled!');
+				secureResources(headers).post({greetings: vm.greetings.secure.postValue}).$promise.then(function (response) {
+					$log.log('POST /rest/secure returned: ', response);
+					$log.info('You might want to check the server logs to see that the POST has been handled!');
 
 				}).catch(function (response) {
-					handleError(response);
+					errorHandler.handle(response);
 				});
 			});
 		};
 
-		var handleError = function (response) {
 
-			if (response.status === 401) {
-				console.error('You need to login first!');
-
-			} else {
-				console.error('Something went wrong...', response);
-			}
-		};
 	}
 })();
 
