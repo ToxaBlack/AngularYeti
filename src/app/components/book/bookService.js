@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-			.module('gulpAngular')
+			.module('YetiLibrary')
 			.factory('BookService', BookService);
 
 	/** @ngInject */

@@ -5,7 +5,7 @@
 	'use strict';
 
 	angular
-			.module('gulpAngular')
+			.module('YetiLibrary')
 			.directive('yetiFooter', yetiFooter);
 
 	/** @ngInject */

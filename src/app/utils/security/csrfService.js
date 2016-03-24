@@ -2,7 +2,7 @@
 	'use strict';
 
 
-	angular.module('gulpAngular').factory('Csrf', function ($http, $q, Cookies, $log) {
+	angular.module('YetiLibrary').factory('Csrf', function ($http, $q, Cookies, $log) {
 
 		return {
 			addResourcesCsrfToHeaders: function (optionsFunction, headers) {

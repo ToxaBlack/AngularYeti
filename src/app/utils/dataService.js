@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	angular.module('gulpAngular').factory('DataService', function ($cookies, $log, $resource) {
+	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource) {
 		var vm = this;
 		vm.data = {
 			isAuth: false

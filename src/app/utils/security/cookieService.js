@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('gulpAngular').factory('Cookies', function () {
+	angular.module('YetiLibrary').factory('Cookies', function () {
 
 		return {
 			/**

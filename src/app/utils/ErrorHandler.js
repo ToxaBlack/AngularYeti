@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 
-	angular.module('gulpAngular').factory('errorHandler', function ($log, $state) {
+	angular.module('YetiLibrary').factory('errorHandler', function ($log, $state) {
 
 		return {
 			handle: function (response) {

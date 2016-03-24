@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('gulpAngular').factory('LoginService', function ($http, $resource, Cookies, $log) {
+	angular.module('YetiLibrary').factory('LoginService', function ($http, $resource, Cookies, $log) {
 
 		var loginResources = $resource('http://localhost:8080/login', {}, {
 			options: {method: 'OPTIONS', cache: false}

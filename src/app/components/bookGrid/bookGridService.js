@@ -3,7 +3,7 @@
 
 
 	angular
-			.module('gulpAngular')
+			.module('YetiLibrary')
 			.factory('BookGridService', BookGridService);
 
 	/** @ngInject */
