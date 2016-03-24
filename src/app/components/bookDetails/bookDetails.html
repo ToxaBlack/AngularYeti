@@ -1,0 +1,46 @@
+<div ng-controller="BookDetailsController as vm">
+    <div class="row">
+        <div class="large-4 columns">
+            <a class="th" href="{{vm.book.imageSrc}}"><img ng-src="{{vm.book.imageSrc}}"></a>
+        </div>
+        <div class="large-8 columns">
+            <form name="book">
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p><strong>Title : </strong> {{vm.book.title}}
+                        </p>
+                    </div>
+                    <div class="large-6 columns">
+                        <p><strong>Authors : </strong> {{vm.book.author}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <p><strong>Description : </strong> {{vm.book.description}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+
+                        <p><strong>Date : </strong> {{vm.book.date}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <p><strong>Rating : </strong> {{vm.book.rating}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p><strong>Available formats : </strong> {{vm.book.type}}
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

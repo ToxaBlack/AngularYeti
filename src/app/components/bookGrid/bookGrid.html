@@ -1,52 +1,31 @@
-<div class="callout column text-center">
-    <img class="thumbnail" src="assets/images/yeti.jpg">
-    <h1>Hello! Welcome to book store!</h1>
-    <p class="lead">You can actually find your favorite book there.</p>
-</div>
-<hr>
-<div class="row">
-    <div class="columns small-2">
-        <a class="button" ng-click="booksCtrl.prev()">&#9664;
-        </a>
-    </div>
+<div ng-controller="BookGridController as vm">
+    <div class="row">
 
-    <div class="columns small-8">
-        <div class="row">
-            <ul class="small-block-grid-2 medium-block-grid-4">
-                <li ng-repeat="book in booksCtrl.books">
-                    <a class="th" href="#/book/{{book.id}}"><img ng-src="{{book.imageSrc}}"></a>
-                    <h5>{{book.title}}</h5>
-                </li>
-            </ul>
 
+        <div class="columns small-8 small-centered">
+            <div class="row">
+                <ul class="small-block-grid-2 medium-block-grid-4">
+                    <li class="min-size" ng-repeat="book in vm.books">
+                        <a class="th" href="#/book/{{book.id}}"><img aria-hidden=true ng-src="{{book.imageSrc}}"></a>
+                        <h5>{{book.title}}</h5>
+                    </li>
+                </ul>
+
+            </div>
         </div>
     </div>
-    <div class="columns small-2 ">
-        <a class="button" ng-click="booksCtrl.next()">&#9654;
-        </a>
+
+    <div class="row">
+        <div class="medium-6 columns medium-centered">
+            <div class="wrapper">
+                <label>Click</label>
+                <a class="inside" ng-disabled="!vm.isPrev" ng-click="vm.isPrev && vm.prevPage()">&#9664;</a>
+                <a class="inside" ng-disabled="!vm.isNext" ng-click="vm.isNext && vm.nextPage()">&#9654;</a>
+            </div>
+        </div>
     </div>
+
 </div>
-<hr>
-<div class="row">
-    <div class="medium-6 columns">
-        <h3>Contact us</h3>
-        <ul class="menu">
-            <li><a href="https://dribbble.com/">Dribbble</a></li>
-            <li><a href="https://facebook.com/">Facebook</a></li>
-        </ul>
-    </div>
-    <div class="medium-6 columns">
-        <label>Name
-            <input type="text" placeholder="Name">
-        </label>
-        <label>Email
-            <input type="text" placeholder="Email">
-        </label>
-        <label>
-            Message
-            <textarea placeholder="holla at a designerd"></textarea>
-        </label>
-        <input type="submit" class="button expanded" value="Submit">
-    </div>
-</div>
+
+
 

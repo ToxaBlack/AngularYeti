@@ -39,7 +39,7 @@
 			LoginService.login(vm.credentials.username, vm.credentials.password,
 					function (data, status, headers, config) {
 						DataService.setIsAuth(true);
-						$state.go("bookGrid");
+						$state.go("home");
 						$log.info('The user has been successfully logged in! ', data, status, headers, config);
 						
 					}, function (data, status, headers, config) {

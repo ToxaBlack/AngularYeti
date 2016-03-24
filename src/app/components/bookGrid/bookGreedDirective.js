@@ -6,13 +6,13 @@
 
 	angular
 			.module('YetiLibrary')
-			.directive('yetiFooter', yetiFooter);
+			.directive('bookGrid', bookGrid);
 
 	/** @ngInject */
-	function yetiFooter() {
+	function bookGrid() {
 		var directive = {
 			restrict: 'E',
-			templateUrl: 'app/shared/footer/footer.html'
+			templateUrl: 'app/components/bookGrid/bookGrid.html'
 		};
 
 		return directive;

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	angular.module('YetiLibrary').factory('Cookies', function () {
+	angular.module('YetiLibrary').factory('Cookies', function ($cookies) {
 
 		return {
 			/**
@@ -13,9 +13,7 @@
 				if (!cookieKey) {
 					return null;
 				}
-				return decodeURIComponent(document.cookie
-								.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(cookieKey)
-												.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+				return $cookies.get(cookieKey)
 			}
 		};
 	});

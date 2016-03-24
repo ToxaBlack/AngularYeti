@@ -6,8 +6,12 @@
 			.run(initFoundation);
 
 	/** @ngInject */
-	function initFoundation() {
-		angular.element(document).foundation();
+	function initFoundation($rootScope) {
+		angular.element(document).foundation('reflow');
+
+		$rootScope.$on('$viewContentLoaded', function () {
+			angular.element(document).foundation('reflow');
+		});
 	}
 
 })();

@@ -11,7 +11,7 @@
 		vm.book = {};
 		vm.date = new Date();
 
-		BookService().get({id: $stateParams.id}).$promise.then(function (response) {
+		BookService.secureResources().get({id: $stateParams.id}).$promise.then(function (response) {
 			$log.log('GET /rest/secure returned: ', response);
 			vm.book = response;
 			vm.date = new Date(response.date);
@@ -20,7 +20,7 @@
 			errorHandler.handle(response);
 		});
 		vm.update = function () {
-			$state.go('bookGrid');
+			$state.go('home');
 		};
 
 	}

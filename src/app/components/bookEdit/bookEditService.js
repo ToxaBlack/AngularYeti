@@ -20,8 +20,10 @@
 				});
 			}
 		};
-		
-		return secureResources;
+
+		return {
+			secureResources: secureResources
+		}
 	}
 
 })();

@@ -1,11 +1,49 @@
-.Absolute-Center {
-  height: 50%; /* Set your own height: percents, ems, whatever! */
-  width: 50%; /* Set your own width: percents, ems, whatever! */
-  overflow: auto; /* Recommended in case content is larger than the container */
-  margin: auto; /* Center the item vertically & horizontally */
-  position: absolute; /* Break it out of the regular flow */
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0; /* Set the bounds in which to center it, relative to its parent/container */
+.th {
+  border-width: 4px;
+}
+
+.wrapper {
+  //height: 30px;
+  overflow: hidden;
+  display: inline-block;
+  border: 2px solid #008cba;
+  border-radius: 999px;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+
+  &:hover {
+    border: none;
+    background-color: #008cba;
+    transition: background-color 0.3s ease;
+
+    .inside {
+      display: block;
+      font-size: 12px;
+      padding: 6px;
+      float: left;
+
+      &:hover {
+        transition: background-color 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    label {
+      display: none;
+    }
+  }
+  .inside {
+    display: none;
+    color: #fff;
+    width: 50%;
+    z-index: 9999;
+  }
+
+  label {
+    padding: 2px;
+    color: #008cba;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }

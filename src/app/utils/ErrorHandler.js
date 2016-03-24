@@ -13,7 +13,7 @@
 						break;
 					case 403:
 						$log.error('You t have permissions!');
-						$state.go('bookGrid');
+						$state.go('home');
 						break;
 					default:
 						$log.error('Something went wrong...', response);

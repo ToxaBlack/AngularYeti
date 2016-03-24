@@ -8,19 +8,17 @@
 	/** @ngInject */
 	function routerConfig($stateProvider, $urlRouterProvider) {
 		$stateProvider
-				.state('bookGrid', {
+				.state('home', {
 					url: '/',
-					templateUrl: 'app/components/bookGrid/bookGrid.html',
-					controller: 'BookGridController',
-					controllerAs: 'booksCtrl'
+					templateUrl: 'app/pages/home/home.html'
 				})
 				.state('book', {
 					url: '/book/:id',
-					templateUrl: 'app/components/book/editBook.html'
+					templateUrl: 'app/pages/book/book.html'
 				})
 				.state('login', {
 					url: '/login',
-					templateUrl: 'app/components/login/login.html'
+					templateUrl: 'app/pages/login/login.html'
 				});
 
 		$urlRouterProvider.otherwise('/');
