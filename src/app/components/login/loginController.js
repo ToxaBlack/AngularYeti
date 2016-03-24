@@ -38,13 +38,13 @@
 		vm.login = function () {
 			LoginService.login(vm.credentials.username, vm.credentials.password,
 					function (data, status, headers, config) {
-						DataService.setIsAuth(true);
+						DataService.setRoles([]);
 						$state.go("home");
 						$log.info('The user has been successfully logged in! ', data, status, headers, config);
 						
 					}, function (data, status, headers, config) {
 						$log.error('Something went wrong while trying to login... ', data, status, headers, config);
-						DataService.setIsAuth(false);
+						DataService.setRoles([]);
 					});
 		};
 
@@ -53,13 +53,13 @@
 				vm.credentials = {username: '', password: ''};
 				delete $cookies['JSESSIONID'];
 				$log.info('The user has been logged out!');
-				DataService.setIsAuth(false);
+				DataService.setRoles([]);
 				$state.go('/');
 
 			}, function (data, status, headers, config) {
 
 				$log.error('Something went wrong while trying to logout... ', data, status, headers, config);
-				DataService.setIsAuth(false);
+				DataService.setRoles([]);
 			});
 		};
 

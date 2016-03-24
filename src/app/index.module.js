@@ -11,6 +11,7 @@
 						'ngAria',
 						'ngResource',
 						'ui.router',
-						'toastr']);
+						'toastr',
+						'angular-input-stars']);
 
 })();

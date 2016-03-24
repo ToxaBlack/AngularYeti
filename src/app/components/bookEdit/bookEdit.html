@@ -1,35 +1,38 @@
-<div ng-controller="BookController as vm">
+<div ng-controller="BookEditController as vm">
     <div class="row">
-        <div class="large-8 columns">
+        <div class="medium-4 columns book-cover">
+            <a class="th" href="{{vm.book.imageSrc}}"><img ng-src="{{vm.book.imageSrc}}"></a>
+        </div>
+        <div class="medium-8 columns">
             <form name="book">
                 <div class="row">
-                    <div class="large-6 columns">
+                    <div class="medium-6 columns">
                         <label>Title
                             <input type="text" placeholder="Enter title" ng-model="vm.book.title"/>
                         </label>
                     </div>
-                    <div class="large-6 columns">
+                    <div class="medium-6 columns">
                         <label>Authors
                             <input type="text" placeholder="Enter authors" ng-model="vm.book.author"/>
                         </label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="large-12 columns">
+                    <div class="medium-12 columns">
                         <label>Description
                             <textarea placeholder="Enter description" ng-model="vm.book.description"></textarea>
                         </label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="large-12 columns">
+                    <div class="medium-12 columns">
                         <label>Date
                             <input type="date" placeholder="Enter authors" ng-model="vm.date"/>
                         </label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="large-12 columns">
+                    <div class="medium-12 columns">
                         <label>Select Box
                             <select ng-model="vm.book.rating">
                                 <option value="1">1</option>
@@ -42,7 +45,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="large-6 columns">
+                    <div class="medium-6 columns">
                         <label>Choose type</label>
                         <input type="radio" name="type" value="PDF" id="typePDF" ng-model="vm.book.type"><label
                             for="typePDF">PDF</label>
@@ -55,13 +58,11 @@
                 </div>
             </form>
         </div>
-        <div class="large-4 columns">
-            <a class="th" href="{{vm.book.imageSrc}}"><img ng-src="{{vm.book.imageSrc}}"></a>
-        </div>
+
 
     </div>
     <div class="row">
-        <div class="columns large-2 large-offset-10">
+        <div class="columns medium-2 medium-offset-10">
             <a class="button radius" ng-click="vm.update()">Update</a>
         </div>
     </div>

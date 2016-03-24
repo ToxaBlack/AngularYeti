@@ -3,7 +3,7 @@
 
 	angular
 			.module('YetiLibrary')
-			.controller('BookController', BookController);
+			.controller('BookEditController', BookController);
 
 	/** @ngInject */
 	function BookController($stateParams, $state, $log, BookService, errorHandler) {

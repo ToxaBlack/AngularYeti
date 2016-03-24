@@ -7,7 +7,7 @@
 	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource) {
 		var vm = this;
 		vm.data = {
-			isAuth: false
+			roles: []
 		};
 
 		var secureResources = function (headers) {
@@ -25,15 +25,15 @@
 
 		secureResources().get().$promise.then(function (response) {
 			$log.log('GET /rest/user/roles returned: ', response);
-			vm.data.isAuth = response;
+			vm.data.roles = response;
 
 		}).catch(function (response) {
 
 		});
 
 		return {
-			setIsAuth: function (isAuth) {
-				vm.data.isAuth = isAuth;
+			setRoles: function (roles) {
+				vm.data.roles = roles;
 			},
 			getData: function() {
 				return vm.data;
