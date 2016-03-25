@@ -10,8 +10,9 @@
         <section class="top-bar-section">
             <!-- Right Nav Section -->
             <ul class="right">
-                <li><a ng-hide="vm.data.isAuth" href="#/login">Login</a></li>
-                <li ng-show="vm.data.isAuth" class="has-dropdown">
+                <li><a ng-show="vm.data.roles[0].authority === 'ROLE_ADMIN'" href="#/add">Add</a></li>
+                <li><a ng-hide="vm.data.roles.length" href="#/login">Login</a></li>
+                <li ng-show="vm.data.roles.length" class="has-dropdown">
                     <a >Account</a>
                     <ul class="dropdown">
                         <li><a href="#">User</a></li>

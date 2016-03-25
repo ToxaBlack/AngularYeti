@@ -12,6 +12,7 @@
 						'ngResource',
 						'ui.router',
 						'toastr',
-						'angular-input-stars']);
+						'angular-input-stars',
+						'flow']);
 
 })();

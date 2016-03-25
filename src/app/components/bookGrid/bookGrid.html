@@ -1,30 +1,48 @@
-<div ng-controller="BookGridController as vm">
+<div ng-controller="BookGridController as vm" ng-cloak>
+    <div class="callout column text-center">
+        <img class="thumbnail" src="assets/images/yeti.jpg">
+        <div id="animated">
+            <h1>Hello! Welcome to book library!</h1>
+            <p class="lead">You can actually find your favorite book there.</p>
+        </div>
+    </div>
+
+    <hr>
     <div class="row">
 
 
         <div class="columns small-8 small-centered">
             <div class="row">
                 <ul class="small-block-grid-2 medium-block-grid-4">
+
                     <li class="min-size" ng-repeat="book in vm.books">
-                        <a class="th" href="#/book/{{book.id}}"><img aria-hidden=true ng-src="{{book.imageSrc}}"></a>
+
+                            <div class="th image-wrap">
+                                <a  href="#/book/{{book.id}}">
+                                <img aria-hidden=true
+                                     ng-src="{{book.imageSrc}}">
+                                </a>
+                                <a href ng-show="vm.data.roles[0].authority == 'ROLE_ADMIN'"
+                                   ng-click="vm.delete(book.id)" class="fa fa-times fa-2x delete-btn" ></a>
+                            </div>
+
                         <h5>{{book.title}}</h5>
                     </li>
+
                 </ul>
 
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="medium-6 columns medium-centered">
-            <div class="wrapper">
+            <div class="page-button">
                 <label>Click</label>
-                <a class="inside" ng-disabled="!vm.isPrev" ng-click="vm.isPrev && vm.prevPage()">&#9664;</a>
-                <a class="inside" ng-disabled="!vm.isNext" ng-click="vm.isNext && vm.nextPage()">&#9654;</a>
+                <button class="inside"  ng-disabled="!vm.isPrev" ng-click="vm.isPrev && vm.prevPage()">&#9664;</button>
+                <button class="inside"  ng-disabled="!vm.isNext" ng-click="vm.isNext && vm.nextPage()">&#9654;</button>
             </div>
         </div>
     </div>
-
 </div>
 
 

@@ -15,13 +15,13 @@
 				vm.credentials = {username: '', password: ''};
 				delete $cookies['JSESSIONID'];
 				$log.info('The user has been logged out!');
-				DataService.setIsAuth(false);
+				DataService.setRoles([]);
 				$state.go('login');
 
 			}, function (data, status, headers, config) {
 
 				$log.error('Something went wrong while trying to logout... ', data, status, headers, config);
-				DataService.setIsAuth(false);
+				DataService.setRoles([]);
 			});
 		};
 	}

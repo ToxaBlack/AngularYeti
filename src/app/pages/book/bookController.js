@@ -8,9 +8,7 @@
 	/** @ngInject */
 	function BookController(DataService) {
 		var vm = this;
-		vm.book = {};
-
-		vm.isAdmin = DataService.getData().isAuth;
+		vm.data = DataService.getData();
 
 	}
 })();

@@ -19,6 +19,10 @@
 				.state('login', {
 					url: '/login',
 					templateUrl: 'app/pages/login/login.html'
+				})
+				.state('addBook', {
+					url: '/add',
+					templateUrl: 'app/pages/addBook/addBook.html'
 				});
 
 		$urlRouterProvider.otherwise('/');

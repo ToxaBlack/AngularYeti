@@ -1,7 +1,14 @@
-<div ng-controller="BookEditController as vm" ng-cloak>
+<div ng-controller="AddBookController as vm" ng-cloak  flow-init="{target: 'https://api.imgur.com/3/image'}">
     <div class="row">
         <div class="medium-4 columns book-cover">
-            <a class="th" href="{{vm.book.imageSrc}}"><img ng-src="{{vm.book.imageSrc}}"></a>
+            <div>
+
+                <span class="button" flow-btn>Upload File</span>
+                <div >
+                    <img ng-show="$flow.files[0]" class="th" flow-img="$flow.files[0]"/>
+                </div>
+
+            </div>
         </div>
         <div class="medium-8 columns">
             <form name="book">
@@ -57,7 +64,7 @@
     </div>
     <div class="row">
         <div class="columns medium-2 medium-offset-10">
-            <a class="button radius" ng-click="vm.update()">Update</a>
+            <a class="button radius" ng-click="vm.add($flow)">Update</a>
         </div>
     </div>
 </div>

@@ -1,13 +1,13 @@
 (function() {
 	'use strict';
 
-	angular.module('YetiLibrary').factory('LoginService', function ($http, $resource, Cookies, $log) {
+	angular.module('YetiLibrary').factory('LoginService', function ($http, $resource, Cookies, $log, restUrl) {
 
-		var loginResources = $resource('http://localhost:8080/login', {}, {
+		var loginResources = $resource(restUrl + '/login', {}, {
 			options: {method: 'OPTIONS', cache: false}
 		});
 
-		var logoutResources = $resource('http://localhost:8080/logout', {}, {
+		var logoutResources = $resource(restUrl + '/logout', {}, {
 			options: {method: 'OPTIONS', cache: false}
 		});
 
@@ -42,7 +42,7 @@
 					headers[$http.defaults.xsrfHeaderName] = csrfToken;
 
 					// Post the credentials for logging in
-					$http.post('http://localhost:8080/login', 'username=' + username + '&password=' + password, {
+					$http.post(restUrl + '/login', 'username=' + username + '&password=' + password, {
 								headers: headers
 							})
 							.success(successHandler)
@@ -80,7 +80,7 @@
 					headers[$http.defaults.xsrfHeaderName] = csrfToken;
 
 					// Post the credentials for logging out
-					$http.post('http://localhost:8080/logout', '', {
+					$http.post(restUrl + '/logout', '', {
 								headers: headers
 							})
 							.success(successHandler)

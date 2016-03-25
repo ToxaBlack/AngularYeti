@@ -1,2 +1,4 @@
-<book-details ng-show="isAdmin"></book-details>
-<book-edit ng-hide="isAdmin"></book-edit>
+<div ng-controller="BookController as vm">
+    <book-details ng-show="vm.data.roles[0].authority !== 'ROLE_ADMIN'"></book-details>
+    <book-edit ng-hide="vm.data.roles[0].authority !== 'ROLE_ADMIN'"></book-edit>
+</div>

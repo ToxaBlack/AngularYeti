@@ -6,12 +6,12 @@
 			.controller('BookDetailsController', BookDetailsController);
 
 	/** @ngInject */
-	function BookDetailsController($stateParams, $log, BookDetailsService, errorHandler) {
+	function BookDetailsController($stateParams, BookService, errorHandler, $log) {
 		var vm = this;
 		vm.book = {};
 
-		BookDetailsService.get({id: $stateParams.id}).$promise.then(function (response) {
-			$log.log('GET /rest/secure returned: ', response);
+		BookService.get($stateParams.id).then(function (response) {
+			$log.log('GET /rest/books returned: ', response);
 			vm.book = response;
 
 		}).catch(function (response) {
