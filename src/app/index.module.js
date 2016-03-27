@@ -5,7 +5,6 @@
 			.module('YetiLibrary',
 					['ngAnimate',
 						'ngCookies',
-						'ngTouch',
 						'ngSanitize',
 						'ngMessages',
 						'ngAria',

@@ -4,7 +4,7 @@
 (function () {
 	'use strict';
 
-	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource, restUrl) {
+	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource, restUrl, errorHandler) {
 		var vm = this;
 		vm.data = {
 			roles: []
@@ -22,7 +22,7 @@
 				vm.data.roles = response;
 
 			}).catch(function (response) {
-
+        errorHandler.handle(response);
 			});
 		};
 		return {

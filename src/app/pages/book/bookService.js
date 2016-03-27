@@ -41,10 +41,10 @@
 		vm.get = function(id) {
 			return vm.secureResources().get({id: id}).$promise
 		};
-		
+
 		vm.getPage = function(page, size) {
 			$log.log('GET /rest/books');
-			return $resource('http://192.168.12.44:8080/rest/books', {}, {
+			return $resource(restUrl + '/rest/books', {}, {
 				get: {method: 'GET', params: {
 					page: page,
 					size: size

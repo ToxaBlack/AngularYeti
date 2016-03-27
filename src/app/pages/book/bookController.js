@@ -9,6 +9,5 @@
 	function BookController(DataService) {
 		var vm = this;
 		vm.data = DataService.getData();
-
-	}
+    	}
 })();

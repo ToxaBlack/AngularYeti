@@ -1,4 +1,4 @@
-<div ng-controller="BookController as vm">
+<div ng-controller="BookController as vm" ng-cloak>
     <book-details ng-show="vm.data.roles[0].authority !== 'ROLE_ADMIN'"></book-details>
     <book-edit ng-hide="vm.data.roles[0].authority !== 'ROLE_ADMIN'"></book-edit>
 </div>

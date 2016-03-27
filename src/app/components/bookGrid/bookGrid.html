@@ -1,5 +1,5 @@
 <div ng-controller="BookGridController as vm" ng-cloak>
-    <div class="callout column text-center">
+    <div class="callout column text-center" ng-click="vm.goToBooks()">
         <img class="thumbnail" src="assets/images/yeti.jpg">
         <div id="animated">
             <h1>Hello! Welcome to book library!</h1>
@@ -11,7 +11,7 @@
     <div class="row">
 
 
-        <div class="columns small-8 small-centered">
+        <div id="books" class="columns small-8 small-centered">
             <div class="row">
                 <ul class="small-block-grid-2 medium-block-grid-4">
 
@@ -23,7 +23,7 @@
                                      ng-src="{{book.imageSrc}}">
                                 </a>
                                 <a href ng-show="vm.data.roles[0].authority == 'ROLE_ADMIN'"
-                                   ng-click="vm.delete(book.id)" class="fa fa-times fa-2x delete-btn" ></a>
+                                   data-reveal-id="delete-modal" ng-click="vm.setDeleteBook(book.id)" class="fa fa-times fa-2x delete-btn" ></a>
                             </div>
 
                         <h5>{{book.title}}</h5>
@@ -43,6 +43,12 @@
             </div>
         </div>
     </div>
+
+  <div id="delete-modal" class="reveal-modal tiny" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <p id="modalTitle">Do you want to delete this book?</p>
+    <a ng-click="vm.delete()" class="button alert">Yes</a>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
 </div>
 
 
