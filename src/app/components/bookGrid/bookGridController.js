@@ -6,7 +6,7 @@
 			.controller('BookGridController', BookGridCtrl);
 
 	/** @ngInject */
-	function BookGridCtrl(BookService, errorHandler, DataService, anchorSmoothScroll) {
+	function BookGridCtrl(BookService, errorHandler, DataService, anchorSmoothScroll, $state) {
 		var vm = this;
 		vm.books = [];
 		vm.page = 0;
@@ -31,29 +31,36 @@
 			BookService.getPage(vm.page, vm.PAGE_SIZE).then(vm.setBooks, errorHandler.handle);
 
 		};
-    
-    vm.setDeleteBook = function(id) {
-      vm.deleteId = id;
-    };
 
-		vm.delete = function() {
-			BookService.delete(vm.deleteId).then(function() {
-				if(vm.books.length === 1) {
+		vm.setDeleteBook = function (id) {
+			vm.deleteId = id;
+		};
+
+		vm.delete = function () {
+			BookService.delete(vm.deleteId).then(function () {
+				if (vm.books.length === 1) {
 					BookService.getPage(--vm.page, vm.PAGE_SIZE).then(vm.setBooks, errorHandler.handle);
 				} else {
 					BookService.getPage(vm.page, vm.PAGE_SIZE).then(vm.setBooks, errorHandler.handle);
 				}
-        
+
 			});
-      $('#delete-modal').foundation('reveal', 'close');
 		};
 
-    vm.goToBooks = function() {
-      anchorSmoothScroll.scrollTo('books');
-    };
+		vm.goToBooks = function () {
+			anchorSmoothScroll.scrollTo('books');
+		};
 
-    angular.element(document).foundation('reveal', 'reflow');
-
-		angular.element('#animated').addClass('animated pulse');
+		vm.showBook = function(id) {
+			switch (vm.data.roles[0].authority) {
+				case 'ROLE_ADMIN':
+					$state.go('book.edit', {id: id});
+					break;
+				case 'ROLE_USER':
+					$state.go('book.details', {id: id});
+					break;
+			}
+		};
+		
 	}
 })();

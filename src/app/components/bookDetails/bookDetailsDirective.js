@@ -1,6 +1,3 @@
-/**
- * Created by anton.charnou on 18.03.2016.
- */
 (function () {
 	'use strict';
 
@@ -10,12 +7,10 @@
 
 	/** @ngInject */
 	function bookEdit() {
-		var directive = {
+		return {
 			restrict: 'E',
 			templateUrl: 'app/components/bookDetails/bookDetails.html'
 		};
-
-		return directive;
 	}
 
 })();

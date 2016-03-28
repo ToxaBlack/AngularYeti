@@ -6,7 +6,7 @@
 			.run(initFoundation);
 
 	/** @ngInject */
-	function initFoundation($rootScope, DataService) {
+	function initFoundation($rootScope, DataService, $state) {
 		angular.element(document).foundation('reflow');
 
 
@@ -16,7 +16,13 @@
 				});
 		$rootScope.$on('$destroy', callback);
 
-		DataService.getRolesFromServer();
+		var roles = DataService.getRolesFromServer();
+		if (roles) {
+			$state.go('home')
+		}
+		else {
+			$state.go('login')
+		}
 
 
 	}

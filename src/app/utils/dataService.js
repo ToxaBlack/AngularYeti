@@ -4,15 +4,14 @@
 (function () {
 	'use strict';
 
-	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource, restUrl, errorHandler) {
+	angular.module('YetiLibrary').factory('DataService', function ($cookies, $log, $resource, restUrl) {
 		var vm = this;
 		vm.data = {
-			roles: []
+			roles: null
 		};
 
 		vm.secureResources = $resource(restUrl + '/rest/users/roles', {}, {
-			get: {method: 'GET', cache: false, isArray: true},
-			options: {method: 'OPTIONS', cache: false}
+			get: {method: 'GET', cache: false, isArray: true}
 		});
 
 
@@ -21,8 +20,8 @@
 				$log.log('GET /rest/user/roles returned: ', response);
 				vm.data.roles = response;
 
-			}).catch(function (response) {
-        errorHandler.handle(response);
+			}).catch(function () {
+				$log.log('Can\'t retrieve roles');
 			});
 		};
 		return {

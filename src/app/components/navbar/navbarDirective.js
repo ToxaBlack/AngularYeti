@@ -7,12 +7,10 @@
 
 	/** @ngInject */
 	function bookNavbar() {
-		var directive = {
+		return {
 			restrict: 'E',
 			templateUrl: 'app/components/navbar/navbar.html'
 		};
-
-		return directive;
 	}
 
 })();

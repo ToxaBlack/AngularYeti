@@ -4,9 +4,7 @@
   "dependencies": {
     "angular-animate": "~1.4.2",
     "angular-cookies": "~1.4.2",
-    "angular-sanitize": "~1.4.2",
     "angular-messages": "~1.4.2",
-    "angular-aria": "~1.4.2",
     "jquery": "~2.1.4",
     "angular-resource": "~1.4.2",
     "angular-ui-router": "~0.2.15",
@@ -16,9 +14,7 @@
     "moment": "~2.10.6",
     "animate.css": "~3.4.0",
     "angular": "~1.4.2",
-    "angular-foundation": "^0.8.0",
-    "angular-input-stars-directive": "angular-input-stars#^1.5.5",
-    "ng-flow": "~2"
+    "angular-input-stars-directive": "angular-input-stars#^1.5.5"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"
